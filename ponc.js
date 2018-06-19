@@ -79,7 +79,8 @@ function Ball(radius, speed, bg, colors, ctx){
 	this.theta = Math.PI/2;
 	this.speed = speed;
 	this.tspeed = 0;
-	this.radius = radius
+	this.radius = radius;
+	this.lastcolor = 0;
 
 	this.update = function(paddle){
 		this.dist += this.speed;
@@ -93,10 +94,9 @@ function Ball(radius, speed, bg, colors, ctx){
 		   	paddle.score++;
 
 		   	var cind = Math.floor(Math.random()*(colors.length - 1));
-		   	var temp = colors[cind];
+		   	cind = cind >= this.lastcolor ? cind + 1 : cind;
 		   	bg.style.backgroundColor = colors[cind];
-		   	colors[cind] = colors[colors.length - 1];
-		   	colors[colors.length - 1] = temp;
+		   	this.lastcolor = cind;
 		}
 		else if (this.dist > paddle.radius){
 			return false;
