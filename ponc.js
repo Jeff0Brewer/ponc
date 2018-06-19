@@ -7,6 +7,8 @@ var test = document.getElementById("test");
 var body = document.getElementById("body");
 var scorecard = document.getElementById("scorecard");
 var bg = document.getElementById("bg");
+var ring = document.getElementById("ring");
+var clip = document.getElementById("clip");
 
 var left = false, right = false;
 
@@ -39,7 +41,7 @@ function newgame(){
 	scorecard.innerHTML = "";
 	bg.style.pointerEvents = "none";
 	paddle = new Paddle(Math.PI/4, Math.min(window.innerWidth*.4, window.innerHeight*.4), .1, ctx);
-	ball = new Ball(paddle.radius/15, paddle.radius/40, bg, colors, ctx);
+	ball = new Ball(paddle.radius/15, paddle.radius/40, bg, ring, clip, colors, ctx);
 	animateframe();
 }
 
@@ -74,7 +76,7 @@ function Paddle(width, radius, speed, ctx){
 	}
 }
 
-function Ball(radius, speed, bg, colors, ctx){
+function Ball(radius, speed, bg, ring, clip, colors, ctx){
 	this.dist = 0;
 	this.theta = Math.PI/2;
 	this.speed = speed;
@@ -90,13 +92,23 @@ function Ball(radius, speed, bg, colors, ctx){
 			Math.min(Math.abs(paddle.theta - this.theta), Math.abs((paddle.theta + Math.PI*2) % (Math.PI*2) - (this.theta + Math.PI*2) % (Math.PI*2))) < paddle.width/2){
 		   	this.dist = -Math.sign(this.speed)*(paddle.radius - this.radius);
 		   	this.theta = this.theta > 0 ? this.theta - Math.PI : this.theta + Math.PI;
-		   	this.tspeed = Math.random()*.1 - .05;
+		   	this.tspeed = Math.random()*.14 - .07;
 		   	paddle.score++;
 
 		   	var cind = Math.floor(Math.random()*(colors.length - 1));
 		   	cind = cind >= this.lastcolor ? cind + 1 : cind;
-		   	bg.style.background = colors[cind];
+		   	bg.style.backgroundColor = colors[cind];
 		   	this.lastcolor = cind;
+
+		   	ring.className = "ring";
+		   	clip.className = "clip";
+
+		   	ring.style.backgroundColor = colors[cind];
+
+		   	setTimeout(function(){
+			   	ring.className = "";
+			   	clip.className = "";
+		   	}, 300);
 		}
 		else if (this.dist > paddle.radius){
 			return false;
