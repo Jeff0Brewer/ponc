@@ -37,6 +37,7 @@ function animateframe(){
 
 function newgame(){
 	scorecard.innerHTML = "";
+	bg.style.pointerEvents = "none";
 	paddle = new Paddle(Math.PI/4, Math.min(window.innerWidth*.4, window.innerHeight*.4), .1, ctx);
 	ball = new Ball(paddle.radius/15, paddle.radius/40, bg, colors, ctx);
 	animateframe();
@@ -45,6 +46,7 @@ function newgame(){
 function endgame(){
 	ctx.clearRect(-cx, -cy, c.width, c.height);
 	scorecard.innerHTML = paddle.score;
+	bg.style.pointerEvents = "auto";
 }
 
 function Paddle(width, radius, speed, ctx){
@@ -138,8 +140,15 @@ body.onkeyup = function(e){
 }
 
 bg.onmouseup = function(){
-	if(scorecard.innerHTML != "")
-		newgame();
+	newgame();
+}
+
+bg.onmouseenter = function(){
+	bg.style.opacity = .9;
+}
+
+bg.onmouseleave = function(){
+	bg.style.opacity = 1;
 }
 
 function resize(){
