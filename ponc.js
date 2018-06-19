@@ -15,7 +15,7 @@ var cy = window.innerHeight / 2;
 ctx.translate(cx,cy);
 
 var colors = ["rgb(0,0,255)", "rgb(204,134,20)", 
-			  "rgb(255,201,64), rgb(111,61,153)",
+			  "rgb(255,201,64)", "rgb(111,61,153)",
 			  "rgb(121,20,204)"];
 
 var paddle;
@@ -95,17 +95,18 @@ function Ball(radius, speed, bg, colors, ctx){
 
 		   	var cind = Math.floor(Math.random()*(colors.length - 1));
 		   	cind = cind >= this.lastcolor ? cind + 1 : cind;
-		   	bg.style.backgroundColor = colors[cind];
+		   	bg.style.background = colors[cind];
 		   	this.lastcolor = cind;
 		}
 		else if (this.dist > paddle.radius){
 			return false;
 		}
 
+		var linelen = paddle.radius;
 		ctx.lineWidth = this.radius*1.4;
 		ctx.beginPath();
-		ctx.moveTo(Math.cos(this.theta)*paddle.radius, Math.sin(this.theta)*paddle.radius);
-		ctx.lineTo(-Math.cos(this.theta)*paddle.radius, -Math.sin(this.theta)*paddle.radius);
+		ctx.moveTo(Math.cos(this.theta)*linelen, Math.sin(this.theta)*linelen);
+		ctx.lineTo(-Math.cos(this.theta)*linelen, -Math.sin(this.theta)*linelen);
 		ctx.stroke();
 
 		ctx.lineWidth = this.radius;
