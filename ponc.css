@@ -25,6 +25,7 @@ html, body{
 	background-color: blue;
 	border-radius: 50%;
 	z-index: 1;
+	pointer-events: none;
 }
 
 .scorecard{
