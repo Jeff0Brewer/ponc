@@ -1,0 +1,71 @@
+@font-face {
+	font-family: coolvetica;
+	src: url("coolvetica.ttf");
+}
+
+html, body{
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+
+.c{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	margin: 0;
+	padding: 0;
+	z-index: 2;
+	pointer-events: none;
+}
+
+.circlebg{
+	position: absolute;
+	background-color: blue;
+	border-radius: 50%;
+	z-index: 1;
+}
+
+.scorecard{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100vw;
+	height: 100vh;
+	line-height: 100vh;
+	text-align: center;
+	z-index: 3;
+	pointer-events: none;
+	font-family: coolvetica;
+}
+
+@media all and (orientation:portrait){
+	.circlebg{
+		width: 90vw;
+		height: 90vw;
+		left: 5vw;
+		top: calc((100vh - 90vw)/2);
+	}
+
+	.scorecard{
+		font-size: 50vw;
+	}
+}
+
+@media all and (orientation:landscape){
+	.circlebg{
+		width: 90vh;
+		height: 90vh;
+		left: calc((100vw - 90vh)/2);
+		top: 5vh;
+	}
+
+	.scorecard{
+		font-size: 50vh;
+	}
+}
+
+.test{
+	color: white;
+}
