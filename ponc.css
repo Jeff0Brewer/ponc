@@ -16,7 +16,7 @@ html, body{
 	top: 0px;
 	margin: 0;
 	padding: 0;
-	z-index: 2;
+	z-index: 3;
 	pointer-events: none;
 }
 
@@ -24,7 +24,7 @@ html, body{
 	position: absolute;
 	background-color: blue;
 	border-radius: 50%;
-	z-index: 1;
+	z-index: 2;
 	pointer-events: none;
 }
 
@@ -36,9 +36,35 @@ html, body{
 	height: 100vh;
 	line-height: 100vh;
 	text-align: center;
-	z-index: 3;
+	z-index: 4;
 	pointer-events: none;
 	font-family: coolvetica;
+}
+
+.ring{
+	position: absolute;
+	background-color: blue;
+	border-radius: 50%;
+	z-index: 0;
+	pointer-events: none;
+
+	animation-name: pulse;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	animation-duration: .3s;
+}
+
+.clip{
+	position: absolute;
+	background-color: black;
+	border-radius: 50%;
+	z-index: 1;
+	pointer-events: none;
+
+	animation-name: pulse;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-duration: .3s;
 }
 
 @media all and (orientation:portrait){
@@ -52,6 +78,21 @@ html, body{
 	.scorecard{
 		font-size: 50vw;
 	}
+
+	@keyframes pulse{
+		from{
+			width: 95vw;
+			height: 95vw;
+			left: 2.5vw;
+			top: calc((100vh - 95vw)/2);
+		}
+		to{
+			width: 200vw;
+			height: 200vw;
+			left: -50vw;
+			top: calc((100vh - 200vw)/2);
+		}
+	}
 }
 
 @media all and (orientation:landscape){
@@ -64,6 +105,21 @@ html, body{
 
 	.scorecard{
 		font-size: 50vh;
+	}
+
+	@keyframes pulse{
+		from{
+			width: 95vh;
+			height: 95vh;
+			left: calc((100vw - 95vh)/2);
+			top: 2.5vh;
+		}
+		to{
+			width: 200vh;
+			height: 200vh;
+			left: calc((100vw - 200vh)/2);
+			top: -50vh;
+		}
 	}
 }
 
