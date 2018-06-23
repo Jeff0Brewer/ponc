@@ -40,6 +40,7 @@ function animateframe(){
 function newgame(){
 	scorecard.innerHTML = "";
 	bg.style.pointerEvents = "none";
+	body.style.cursor = "none";
 	paddle = new Paddle(Math.PI/4, Math.min(window.innerWidth*.4, window.innerHeight*.4), .1, ctx);
 	ball = new Ball(paddle.radius/15, paddle.radius/40, bg, ring, clip, colors, ctx);
 	animateframe();
@@ -49,6 +50,7 @@ function endgame(){
 	ctx.clearRect(-cx, -cy, c.width, c.height);
 	scorecard.innerHTML = paddle.score;
 	bg.style.pointerEvents = "auto";
+	body.style.cursor = "auto";
 }
 
 function Paddle(width, radius, speed, ctx){
@@ -92,7 +94,7 @@ function Ball(radius, speed, bg, ring, clip, colors, ctx){
 			Math.min(Math.abs(paddle.theta - this.theta), Math.abs((paddle.theta + Math.PI*2) % (Math.PI*2) - (this.theta + Math.PI*2) % (Math.PI*2))) < paddle.width/2){
 		   	this.dist = -Math.sign(this.speed)*(paddle.radius - this.radius);
 		   	this.theta = this.theta > 0 ? this.theta - Math.PI : this.theta + Math.PI;
-		   	this.tspeed = Math.random()*.14 - .07;
+		   	this.tspeed = Math.random()*.15 - .075;
 		   	paddle.score++;
 
 		   	var cind = Math.floor(Math.random()*(colors.length - 1));
@@ -108,7 +110,7 @@ function Ball(radius, speed, bg, ring, clip, colors, ctx){
 		   	setTimeout(function(){
 			   	ring.className = "";
 			   	clip.className = "";
-		   	}, 300);
+		   	}, 500);
 		}
 		else if (this.dist > paddle.radius){
 			return false;
@@ -148,6 +150,10 @@ body.onkeyup = function(e){
 			break;
 		case 39:
 			right = false;
+			break;
+		case 32:
+			if(scorecard.innerHTML != "")
+				newgame();
 			break;
 		}
 }
