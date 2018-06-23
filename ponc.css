@@ -62,8 +62,9 @@ html, body{
 	pointer-events: none;
 
 	animation-name: pulse;
-	animation-timing-function: ease-in-out;
+	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
+	animation-delay: .05s;
 	animation-duration: .3s;
 }
 
@@ -81,10 +82,10 @@ html, body{
 
 	@keyframes pulse{
 		from{
-			width: 95vw;
-			height: 95vw;
-			left: 2.5vw;
-			top: calc((100vh - 95vw)/2);
+			width: 90vw;
+			height: 90vw;
+			left: 5vw;
+			top: calc((100vh - 90vw)/2);
 		}
 		to{
 			width: 200vw;
@@ -109,10 +110,10 @@ html, body{
 
 	@keyframes pulse{
 		from{
-			width: 95vh;
-			height: 95vh;
-			left: calc((100vw - 95vh)/2);
-			top: 2.5vh;
+			width: 90vh;
+			height: 90vh;
+			left: calc((100vw - 90vh)/2);
+			top: 5vh;
 		}
 		to{
 			width: 200vh;
